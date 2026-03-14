@@ -83,3 +83,23 @@ The project solves three critical enterprise challenges faced by fintech teams:
 ---
 
 ## 🏗 Repository Structure
+```pay-flow-database-optimization/
+├── sql/
+├── python/
+├── dataset/                 # Raw Olist CSVs (gitignore'd — download link below)
+├── README.md                # ← You are here
+├── CHANGELOG
+└── LICENSE
+```
+
+## 🚀 Quick Start (Local Setup)
+
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/yourusername/pay-flow-database-optimization.git
+   cd pay-flow-database-optimization
+   ```
+2. **Create PostgreSQL database**
+   ```SQL
+   CREATE DATABASE payflow_db;
+   ```
