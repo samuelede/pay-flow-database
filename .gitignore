@@ -1,1 +1,7 @@
+# Hide files & folders
+/venv/
+/archive/
+
+
+.gitignore
 
