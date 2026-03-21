@@ -9,6 +9,23 @@
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Dataset Mapping (Olist → Pay-Flow)](#dataset-mapping-olist--pay-flow)
+- [Technologies & Tools](#technologies--tools)
+- [Step-by-Step What This Repository Does](#step-by-step-what-this-repository-does)
+  - [Phase 1: Project Setup & Version Control](#phase-1-project-setup--version-control)
+  - [Phase 2: Professional Data Modeling (PostgreSQL)](#phase-2-professional-data-modeling-postgresql)
+  - [Phase 3: Python-Driven ETL Automation](#phase-3-python-driven-etl-automation)
+  - [Phase 4: Analytical Layer & Business Intelligence](#phase-4-analytical-layer--business-intelligence)
+  - [Phase 5: Optimization & Fintech Readiness](#phase-5-optimization--fintech-readiness)
+- [Repository Structure](#repository-structure)
+- [Quick Start (Local Setup)](#quick-start-local-setup)
+- [Learning Outcomes You Will Gain](#learning-outcomes-you-will-gain)
+- [Dataset Download](#dataset-download)
+- [Connect & Contribute](#connect--contribute)
+
 ---
 
 ## 🚀 Project Overview
@@ -107,33 +124,40 @@ The project solves three critical enterprise challenges faced by fintech teams:
    ```Bash
    pip install -r requirements.txt
    ```
-4. Configure connection (edit python/utils/db_config.py or use environment variables)
-Run the full pipelineBashpython run_etl.py
-Explore
-Connect with pgAdmin / DBeaver
-Query the analytical views
+4. **Configure connection** (edit
+   ```python/utils/db_config.py```
+   or use environment variables)
+
+5. **Run the full pipelineBash
+   ```python run_etl.py```
+   
+6. **Explore**
+-   Connect with pgAdmin / DBeaver
+-   Query the analytical views
 
 
 
-📚 Learning Outcomes You Will Gain
+## 📚 Learning Outcomes You Will Gain
 
-Professional PostgreSQL data modeling for fintech
-Git-based collaborative SQL development (exactly how senior data engineers work)
-Python automation of ETL + schema management
-Building analytical layers on top of transactional data
-Real-world documentation & migration practices
+-   Professional PostgreSQL data modeling for fintech
+-   Git-based collaborative SQL development (exactly how senior data engineers work)
+-   Python automation of ETL + schema management
+-   Building analytical layers on top of transactional data
+-   Real-world documentation & migration practices
 
 
-📥 Dataset Download
+## 📥 Dataset Download
 Download the full Olist dataset here:
 https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
-Place the CSVs in the data/ folder.
 
-🔗 Connect & Contribute
+Place the CSVs in the ``data/`` folder.
+
+## 🔗 Connect & Contribute
 This repo is part of my Data Engineering Portfolio.
 Feel free to fork, open issues, or use it as a template for your own fintech/database projects!
+
 Made with ❤️ for real-world data engineering practice.
 
-Last Updated: March 2026
-Status: Production-ready template
+### Last Updated: March 2026
+**Status:** Production-ready template
 text
