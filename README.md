@@ -103,3 +103,37 @@ The project solves three critical enterprise challenges faced by fintech teams:
    ```SQL
    CREATE DATABASE payflow_db;
    ```
+3. **Install Python dependencies**
+   ```Bash
+   pip install -r requirements.txt
+   ```
+4. Configure connection (edit python/utils/db_config.py or use environment variables)
+Run the full pipelineBashpython run_etl.py
+Explore
+Connect with pgAdmin / DBeaver
+Query the analytical views
+
+
+
+📚 Learning Outcomes You Will Gain
+
+Professional PostgreSQL data modeling for fintech
+Git-based collaborative SQL development (exactly how senior data engineers work)
+Python automation of ETL + schema management
+Building analytical layers on top of transactional data
+Real-world documentation & migration practices
+
+
+📥 Dataset Download
+Download the full Olist dataset here:
+https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
+Place the CSVs in the data/ folder.
+
+🔗 Connect & Contribute
+This repo is part of my Data Engineering Portfolio.
+Feel free to fork, open issues, or use it as a template for your own fintech/database projects!
+Made with ❤️ for real-world data engineering practice.
+
+Last Updated: March 2026
+Status: Production-ready template
+text
