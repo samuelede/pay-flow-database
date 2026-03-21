@@ -4,11 +4,39 @@ import zipfile
 import pandas as pd
 import sys
 
+# Check and install missing packages automatically (optional but very user-friendly)
+def install_missing_packages():
+    required = ['pandas']
+    missing = []
+    
+    for package in required:
+        try:
+            __import__(package)
+        except ImportError:
+            missing.append(package)
+    
+    if missing:
+        print("📦 Missing required packages:", missing)
+        print("Installing them now...\n")
+        import subprocess
+        try:
+            subprocess.check_call([sys.executable, "-m", "pip", "install"] + missing)
+            print("✅ Packages installed successfully!\n")
+        except subprocess.CalledProcessError:
+            print("❌ Failed to install packages automatically.")
+            print("Please run this command manually:")
+            print("   pip install pandas")
+            sys.exit(1)
+
+
+install_missing_packages()
+
+import pandas as pd
 
 def download_olist_dataset(force_download: bool = False):
     print("📥 Starting download of Brazilian E-Commerce (Olist) dataset...\n")
 
-    data_dir = Path("/dataset")
+    data_dir = Path("../dataset")
     data_dir.mkdir(exist_ok=True)
 
     zip_path = data_dir / "brazilian_ecommerce.zip"
