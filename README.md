@@ -102,10 +102,21 @@ The project solves three critical enterprise challenges faced by fintech teams:
 ## 🏗 Repository Structure
 ```pay-flow-database-optimization/
 ├── sql/
+│   ├── ddl/                 # Table creation scripts
+│   ├── views/               # Analytical views
+│   └── migrations/          # Versioned migration files
 ├── python/
-├── dataset/                 # Raw Olist CSVs (gitignore'd — download link below)
+│   ├── etl/                 # Data loading & merging scripts
+│   ├── analytics/           # View creation scripts
+│   └── utils/               # Database connection helpers
+├── data/                    # Raw Olist CSVs (gitignore'd — download link below)
+├── docs/
+│   ├── data_dictionary.md
+│   └── schema_diagram.png
+├── .github/workflows/       # CI/CD for SQL validation (optional)
+├── run_etl.py               # One-click full pipeline
+├── requirements.txt
 ├── README.md                # ← You are here
-├── CHANGELOG
 └── LICENSE
 ```
 
