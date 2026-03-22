@@ -1,92 +1,57 @@
 """
 merge_into_transactions.py
-Creates / refreshes enriched transactions fact table
+
+- Executes create_transformed_tables.sql to build and populate analytical tables.
 """
 
 import psycopg2
+from pathlib import Path
 from utils.db_config import DB_CONFIG
 
+# Configuration
+SQL_DIR = Path("sql")
+TRANSFORM_SQL = SQL_DIR / "create_transformed_tables.sql"
 
 def get_connection():
+    """Create a new connection using config from db_config.py"""
     return psycopg2.connect(**DB_CONFIG)
 
+def execute_transform_sql():
+    """Reads and executes the transformation SQL script."""
+    if not TRANSFORM_SQL.exists():
+        print(f"! Transform SQL file not found: {TRANSFORM_SQL}")
+        return
 
-def run_merge():
-    conn = get_connection()
-    cursor = conn.cursor()
+    print(f"→ Running transformation script: {TRANSFORM_SQL.name}")
 
-    print("Creating / refreshing enriched transactions table...")
-
-    merge_sql = """
-    DROP TABLE IF EXISTS transactions;
-
-    CREATE TABLE transactions AS
-    SELECT
-        o.order_id,
-        o.customer_id,
-        o.order_status,
-        o.order_purchase_timestamp,
-        o.order_approved_at,
-        o.order_delivered_carrier_date,
-        o.order_delivered_customer_date,
-        o.order_estimated_delivery_date,
-
-        oi.product_id,
-        oi.seller_id          AS merchant_id,
-        oi.price,
-        oi.freight_value,
-
-        p.payment_sequential,
-        p.payment_type,
-        p.payment_installments,
-        p.payment_value,
-
-        -- Some useful derived fields
-        (oi.price + oi.freight_value) AS total_item_value,
-        CASE 
-            WHEN o.order_delivered_customer_date > o.order_estimated_delivery_date 
-            THEN true ELSE false 
-        END AS is_late_delivery
-
-    FROM raw_orders o
-    INNER JOIN raw_order_items oi ON o.order_id = oi.order_id
-    LEFT JOIN raw_order_payments p 
-        ON o.order_id = p.order_id 
-        AND p.payment_sequential = 1;   -- take primary payment only (simplification)
-    """
-
+    conn = None
     try:
-        cursor.execute(merge_sql)
+        with open(TRANSFORM_SQL, "r", encoding="utf-8") as f:
+            sql_content = f.read()
+
+        conn = get_connection()
+        # Using a context manager for the cursor ensures it closes automatically
+        with conn.cursor() as cur:
+            # Optional: Add logic here to clear old analytical data if needed
+            # cur.execute("TRUNCATE TABLE transactions CASCADE;") 
+            
+            cur.execute(sql_content)
+        
         conn.commit()
-        print("✓ transactions table created/refreshed")
-
-        # Optional: add indexes (very important for performance)
-        indexes = [
-            "CREATE INDEX IF NOT EXISTS idx_transactions_order_id ON transactions(order_id);",
-            "CREATE INDEX IF NOT EXISTS idx_transactions_merchant_id ON transactions(merchant_id);",
-            "CREATE INDEX IF NOT EXISTS idx_transactions_customer_id ON transactions(customer_id);",
-            "CREATE INDEX IF NOT EXISTS idx_transactions_purchase_timestamp ON transactions(order_purchase_timestamp);",
-        ]
-
-        for idx_sql in indexes:
-            cursor.execute(idx_sql)
-        conn.commit()
-        print("✓ Indexes created")
-
-        # Row count check
-        cursor.execute("SELECT COUNT(*) FROM transactions;")
-        count = cursor.fetchone()[0]
-        print(f"→ Final row count: {count:,}")
+        print("   ✓ Transformation and population completed successfully.")
 
     except Exception as e:
-        conn.rollback()
-        print(f"Error: {e}")
+        if conn:
+            conn.rollback()
+        print(f"   ✗ Transformation failed: {type(e).__name__}: {e}")
     finally:
-        cursor.close()
-        conn.close()
+        if conn:
+            conn.close()
 
+def main():
+    print("=== PayFlow - Transformation & Analytical Tables ===\n")
+    execute_transform_sql()
+    print("\nTransformation pipeline finished.\n")
 
 if __name__ == "__main__":
-    print("=== Merging Olist data into transactions fact table ===\n")
-    run_merge()
-    print("\nDone.")
+    main()

@@ -1,3 +1,5 @@
+TRUNCATE TABLE customers, merchants, transactions CASCADE; 
+
 INSERT INTO customers (customer_id, name, country, email)
 SELECT
 row_number() over(ORDER BY c.customer_id) as customer_id, 

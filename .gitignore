@@ -1,7 +1,7 @@
 # Hide files & folders
 /venv/
 /archive/
-
+/python/utils/
 
 .gitignore
-
+update_changelog.py
