@@ -1,12 +1,13 @@
-CREATE TABLE raw_customers (
-customer_id varchar(50),
-customer_unique_id varchar(50),
-customer_zip_code_prefix varchar(10),
-customer_city varchar(100),
-customer_state varchar(2));
+CREATE TABLE IF NOT EXISTS raw_customers (
+    customer_id varchar(50),
+    customer_unique_id varchar(50),
+    customer_zip_code_prefix varchar(10),
+    customer_city varchar(100),
+    customer_state varchar(2)
+);
 
 -- RAW SELLERS TABLE
-CREATE TABLE raw_sellers (
+CREATE TABLE IF NOT EXISTS raw_sellers (
     seller_id VARCHAR(50),
     seller_zip_code_prefix VARCHAR(10),
     seller_city VARCHAR(100),
@@ -14,7 +15,7 @@ CREATE TABLE raw_sellers (
 );
 
 -- RAW ORDERS TABLE
-CREATE TABLE raw_orders (
+CREATE TABLE IF NOT EXISTS raw_orders (
     order_id VARCHAR(50),
     customer_id VARCHAR(50),
     order_status VARCHAR(50),
@@ -26,7 +27,7 @@ CREATE TABLE raw_orders (
 );
 
 -- RAW ORDER ITEMS TABLE
-CREATE TABLE raw_order_items (
+CREATE TABLE IF NOT EXISTS raw_order_items (
     order_id VARCHAR(50),
     order_item_sequence INT,
     product_id VARCHAR(50),
@@ -37,7 +38,7 @@ CREATE TABLE raw_order_items (
 );
 
 -- RAW ORDER PAYMENTS TABLE
-CREATE TABLE raw_order_payments (
+CREATE TABLE IF NOT EXISTS raw_order_payments (
     order_id VARCHAR(50),
     payment_sequential INT,
     payment_type VARCHAR(50),
