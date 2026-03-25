@@ -26,7 +26,7 @@ TABLE_MAPPING = {
 }
 
 def get_connection():
-    return psycopg2.connect(**DB_CONFIG)
+    return psycopg2.connect(**DB_CONFIG) # type: ignore
 
 def execute_schema_sql():
     if not RAW_SCHEMA_SQL.exists():

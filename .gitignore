@@ -2,6 +2,42 @@
 /venv/
 /archive/
 /python/utils/
-
-.gitignore
+/dataset/
 update_changelog.py
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Data folder (contains large CSVs)
+data/
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Database backups
+*.bak
+*.sql.backup

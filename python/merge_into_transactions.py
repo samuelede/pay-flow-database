@@ -14,7 +14,7 @@ TRANSFORM_SQL = SQL_DIR / "create_transformed_tables.sql"
 
 def get_connection():
     """Create a new connection using config from db_config.py"""
-    return psycopg2.connect(**DB_CONFIG)
+    return psycopg2.connect(**DB_CONFIG) # type: ignore
 
 def execute_transform_sql():
     """Reads and executes the transformation SQL script."""

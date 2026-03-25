@@ -109,10 +109,10 @@ The project solves three critical enterprise challenges faced by fintech teams:
 │   ├── etl/                 # Data loading & merging scripts
 │   ├── analytics/           # View creation scripts
 │   └── utils/               # Database connection helpers
-├── data/                    # Raw Olist CSVs (gitignore'd — download link below)
+├── dataset/                    # Raw Olist CSVs (gitignore'd — download link below)
 ├── docs/
 │   ├── data_dictionary.md
-│   └── schema_diagram.png
+│   └── schema_diagram.md
 ├── .github/workflows/       # CI/CD for SQL validation (optional)
 ├── run_etl.py               # One-click full pipeline
 ├── requirements.txt
