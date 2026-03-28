@@ -3,6 +3,7 @@
 /archive/
 /python/utils/
 /dataset/
+/python/utils/db_config.py
 update_changelog.py
 
 # Byte-compiled / optimized / DLL files
